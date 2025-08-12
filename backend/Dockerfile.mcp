@@ -1,0 +1,47 @@
+FROM python:3.10-slim
+
+# 设置工作目录
+WORKDIR /app
+
+# 更换为国内镜像源并安装系统依赖
+RUN sed -i 's/deb.debian.org/mirrors.ustc.edu.cn/g' /etc/apt/sources.list.d/debian.sources && \
+    apt-get update && apt-get install -y \
+    curl \
+    supervisor \
+    && rm -rf /var/lib/apt/lists/*
+
+# 安装Python依赖
+RUN pip install \
+    -i https://mirrors.aliyun.com/pypi/simple/ \
+    fastapi \
+    uvicorn \
+    python-dotenv \
+    pydantic \
+    qwen-agent \
+    mcp-clickhouse \
+    supervisor
+
+# 复制应用代码
+COPY openai_api.py .
+COPY ch_agent.py .
+
+# 创建日志目录
+RUN mkdir -p /app/log
+RUN mkdir -p /var/log/supervisor
+
+# 复制启动脚本
+COPY docker-entrypoint-mcp.sh /docker-entrypoint-mcp.sh
+RUN chmod +x /docker-entrypoint-mcp.sh
+
+# 创建supervisor配置文件
+COPY supervisord.conf /etc/supervisor/conf.d/supervisord.conf
+
+# 暴露端口
+EXPOSE 8001 8760
+
+# 健康检查
+# HEALTHCHECK --interval=30s --timeout=10s --start-period=5s --retries=3 \
+#     CMD curl -f http://localhost:8001/health && curl -f http://localhost:8760/health || exit 1
+
+# 设置入口点
+ENTRYPOINT ["/docker-entrypoint-mcp.sh"]
