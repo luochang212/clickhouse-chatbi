@@ -5,12 +5,13 @@ services:
       context: ./backend
       dockerfile: Dockerfile
     container_name: clickhouse-dev
+    user: "101:101"
     ports:
       - "18123:8123"
       - "19000:9000"
     volumes:
-      - ./backend/ch_data:/var/lib/clickhouse/
-      - ./backend/ch_logs:/var/log/clickhouse-server/
+      - clickhouse_data:/var/lib/clickhouse/
+      - clickhouse_logs:/var/log/clickhouse-server/
       - ./backend/init:/docker-entrypoint-initdb.d/
     environment:
       CLICKHOUSE_USER: ${CLICKHOUSE_USER}
@@ -114,6 +115,8 @@ services:
 volumes:
   postgres_data:
   redis_data:
+  clickhouse_data:
+  clickhouse_logs:
 
 networks:
   app-network:
