@@ -43,14 +43,15 @@ cp .env.example .env
 
 **3）启动服务**
 
-运行前检查：
-
-- 确保所有 `.sh` 和 `.sql` 文件的行结束符是 `LF` 而非 `CRLF`。包括但不限于以下文件：
-    - [./frontend/docker-entrypoint.sh](./frontend/docker-entrypoint.sh)
-    - [./backend/docker-entrypoint.sh](./backend/docker-entrypoint.sh)
-    - [./backend/docker-entrypoint-mcp.sh](./backend/docker-entrypoint-mcp.sh)
-    - [./backend/init/init-clickhouse.sh](./backend/init/init-clickhouse.sh)
-    - [./backend/init/init-database.sql](./backend/init/init-database.sql)
+> **⚠️ Windows 用户注意事项**
+> 
+> 请检查 `.sh` 文件是否是 CRLF 格式。如是，需转换为 LF 格式，否则可能导致 docker compose 启动失败，打开 PowerShell 执行：
+> 
+> ```powershell
+> .\convert.ps1
+> ```
+> 
+> 该脚本将本目录下所有 `.sh` 文件的行结束符转换为 LF 格式。
 
 然后在当前路径运行：
 
