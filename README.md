@@ -73,7 +73,7 @@ docker compose up -d
 # 查看运行中的容器
 docker ps
 
-# 查看 nextjs 容器日志
+# 查看 nextjs-dev 容器日志
 docker logs nextjs-dev -f
 ```
 
@@ -94,3 +94,18 @@ docker logs nextjs-dev -f
 
 > [!NOTE]
 > 囿于 GitHub 仓库上传文件的限制，我并未上传完整的动漫数据集，而是用 [sample.sh](./backend/init/data/sample.sh) 脚本取前一千行作为样例数据，随代码上传。如果你希望访问完整的动漫数据集，需要下载 [top-popular-anime](https://www.kaggle.com/datasets/tanishksharma9905/top-popular-anime) 的 `popular_anime.csv` 文件，替代当前一千行版本的 [./backend/init/data/popular_anime.csv](./backend/init/data/popular_anime.csv) 文件。
+
+**4）关闭并删除容器**
+
+> [!WARNING]
+> 执行此步骤将删除所有相关容器和卷，包括数据库中的数据。请确保已备份重要数据。
+
+在当前路径下执行：
+
+```bash
+# 删除所有容器
+docker compose down
+
+# 删除所有容器和卷
+docker compose down -v
+```
