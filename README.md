@@ -108,6 +108,9 @@ docker ps
 
 # 查看 nextjs-dev 容器日志
 docker logs nextjs-dev -f
+
+# 重新构建容器
+# docker compose build --no-cache
 ```
 
 启动后，打开浏览器访问 [http://localhost:3000/](http://localhost:3000/)
