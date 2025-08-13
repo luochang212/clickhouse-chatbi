@@ -16,7 +16,36 @@
 
 docker compose 的环境变量在 `.env` 文件，按律不上传。 
 
-具体配置参考 [.env.example](./.env.example) 文件。
+```env
+# backend
+CLICKHOUSE_HOST=clickhouse
+CLICKHOUSE_PORT=18123
+CLICKHOUSE_USER=admin
+CLICKHOUSE_PASSWORD=[YOUR_CLICKHOUSE_PASSWORD]
+CLICKHOUSE_DATABASE=entertainment
+CLICKHOUSE_MCP_SERVER_TRANSPORT=sse
+CLICKHOUSE_MCP_BIND_HOST=0.0.0.0
+CLICKHOUSE_MCP_BIND_PORT=8760
+CLICKHOUSE_SECURE=false
+CLICKHOUSE_VERIFY=false
+DEEPSEEK_BASE_URL=https://api.deepseek.com
+DEEPSEEK_API_KEY=[YOUR_DEEPSEEK_API_KEY]
+DASHSCOPE_BASE_URL=https://dashscope.aliyuncs.com/compatible-mode/v1
+DASHSCOPE_API_KEY=[YOUR_DASHSCOPE_API_KEY]
+
+# frontend
+POSTGRES_USER=postgres
+POSTGRES_PASSWORD=[YOUR_POSTGRES_PASSWORD]
+POSTGRES_DB=nextjsdev
+REDIS_PASSWORD=[YOUR_REDIS_PASSWORD]
+# Generate a random auth secret: https://generate-secret.vercel.app/32
+AUTH_SECRET=[YOUR_AUTH_SECRET]
+AUTH_URL=http://0.0.0.0:3000
+POSTGRES_URL=postgres://postgres:[YOUR_POSTGRES_PASSWORD]@postgres:5432/nextjsdev
+REDIS_URL=redis://:[YOUR_REDIS_PASSWORD]@redis:6379
+```
+
+本页面可能更新不及时，最新配置请参考 [.env.example](./.env.example) 文件。
 
 > [!NOTE]
 > 密码可以随意配置，但请注意一致性，比如 `POSTGRES_URL` 中的密码需要和 `POSTGRES_PASSWORD` 保持一致。`DEEPSEEK_API_KEY` 不是必要的，仅作为备选，如不需要可注释掉此配置。`DASHSCOPE_API_KEY` 是必要的，请前往 [阿里云百炼](https://www.aliyun.com/product/bailian) 平台申请。
@@ -31,9 +60,9 @@ docker compose 的环境变量在 `.env` 文件，按律不上传。
 # 1. 复制配置格式
 cp .env.example .env
 
-# 2. 参考上一节，编辑 .env 文件中的环境变量
+# 2. 参考上一节，将环境变量填入 .env 文件
 # vim .env
-# ...
+# ......
 ```
 
 **2）启动 Docker**
@@ -41,7 +70,7 @@ cp .env.example .env
 这包括：
 
 - 启动 Docker Desktop
-- 中国大陆需配置 Docker 镜像 `registry-mirrors`
+- 对于中国大陆地区，需要 [配置镜像源](https://luochang212.github.io/posts/chat_to_clickhouse/#1-%E9%85%8D%E7%BD%AE-docker-%E9%95%9C%E5%83%8F%E6%BA%90)
 
 **3）启动服务**
 
