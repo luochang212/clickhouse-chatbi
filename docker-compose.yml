@@ -23,7 +23,7 @@ services:
     cap_add:
       - SYS_NICE
       - IPC_LOCK
-    restart: unless-stopped
+    restart: on-failure:5
     networks:
       - app-network
 
@@ -57,7 +57,7 @@ services:
     working_dir: /app
     depends_on:
       - clickhouse
-    restart: unless-stopped
+    restart: on-failure:5
     networks:
       - app-network
 
@@ -73,7 +73,7 @@ services:
       - "15432:5432"
     volumes:
       - postgres_data:/var/lib/postgresql/data
-    restart: unless-stopped
+    restart: on-failure:5
     networks:
       - app-network
 
@@ -86,7 +86,7 @@ services:
       - "16379:6379"
     volumes:
       - redis_data:/data
-    restart: unless-stopped
+    restart: on-failure:5
     networks:
       - app-network
 
@@ -104,7 +104,7 @@ services:
       - .env
     command: sh -c "chmod +x /app/docker-entrypoint.sh &&
       /app/docker-entrypoint.sh"
-    restart: unless-stopped
+    restart: on-failure:5
     depends_on:
       - postgres
       - redis
