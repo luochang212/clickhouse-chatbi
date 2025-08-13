@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/sh
 
 # ClickHouse 初始化脚本
 

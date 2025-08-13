@@ -8,6 +8,7 @@ RUN sed -i 's/deb.debian.org/mirrors.ustc.edu.cn/g' /etc/apt/sources.list.d/debi
     apt-get update && apt-get install -y \
     curl \
     supervisor \
+    dos2unix \
     && rm -rf /var/lib/apt/lists/*
 
 # 安装Python依赖
@@ -30,8 +31,9 @@ RUN mkdir -p /app/log
 RUN mkdir -p /var/log/supervisor
 
 # 复制启动脚本
-COPY docker-entrypoint-mcp.sh /docker-entrypoint-mcp.sh
-RUN chmod +x /docker-entrypoint-mcp.sh
+COPY docker-entrypoint-mcp.sh /custom-entrypoint-mcp.sh
+RUN apt-get update && apt-get install -y dos2unix && dos2unix /custom-entrypoint-mcp.sh
+RUN chmod +x /custom-entrypoint-mcp.sh
 
 # 创建supervisor配置文件
 COPY supervisord.conf /etc/supervisor/conf.d/supervisord.conf
@@ -44,4 +46,4 @@ EXPOSE 8001 8760
 #     CMD curl -f http://localhost:8001/health && curl -f http://localhost:8760/health || exit 1
 
 # 设置入口点
-ENTRYPOINT ["/docker-entrypoint-mcp.sh"]
+ENTRYPOINT ["/custom-entrypoint-mcp.sh"]

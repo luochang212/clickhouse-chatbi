@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/sh
 
 # 启动 ClickHouse 服务并执行初始化脚本
 
@@ -20,7 +20,7 @@ max_retries=30
 while [ $retry_count -lt $max_retries ]; do
     if clickhouse-client --host localhost \
         --port 9000 \
-        --user ${CLICKHOUSE_USER:-admin} \
+        --user ${CLICKHOUSE_USER} \
         --password ${CLICKHOUSE_PASSWORD} \
         --query "SELECT 1" > /dev/null 2>&1; then
         echo "ClickHouse service started successfully"

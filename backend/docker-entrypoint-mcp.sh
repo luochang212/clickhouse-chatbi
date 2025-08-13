@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/sh
 
 # 合并服务启动脚本 - MCP ClickHouse + OpenAI API
 
