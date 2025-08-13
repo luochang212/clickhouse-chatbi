@@ -1,6 +1,6 @@
-# ClickHouse ChatBI
+# clickhouse-chatbi
 
-基于 [ClickHouse](https://github.com/ClickHouse/ClickHouse) 数据库的 [ChatBI](https://en.wikipedia.org/wiki/Business_intelligence) 单页应用。
+基于 [ClickHouse](https://github.com/ClickHouse/ClickHouse) 数据库的 ChatBI 单页应用。
 
 ![frontend-image](./img/webui-img.png)
 
