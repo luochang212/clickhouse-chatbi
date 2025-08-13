@@ -95,7 +95,8 @@ services:
     image: node:22-alpine
     container_name: nextjs-dev
     ports:
-      - "3000:3000"
+      # - "3000:3000"
+      - "0.0.0.0:3000:3000"
     volumes:
       - ./frontend:/app
     working_dir: /app

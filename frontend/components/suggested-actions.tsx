@@ -24,33 +24,23 @@ function PureSuggestedActions({
     {
       title: '动画数据库 - 整体统计信息',
       label: '平均分 / 最大值 / 中位数 / 记录数',
-      action: '所有动漫的「平均评分」是多少？',
+      action: '所有动画的「平均评分」是多少？',
     },
     {
       title: '动画数据库 - 排名信息',
       label: `最高排名 / 最低排名 / 排名前5`,
-      action: `评分人数超过一万人的动画中，「排名前 5 」的是？`,
+      action: `评分人数超过三千人的动画中，「排名前 5 」的是？`,
     },
-    // {
-    //   title: 'What are the advantages',
-    //   label: 'of using Next.js?',
-    //   action: 'What are the advantages of using Next.js?',
-    // },
-    // {
-    //   title: 'Write code to',
-    //   label: `demonstrate djikstra's algorithm`,
-    //   action: `Write code to demonstrate djikstra's algorithm`,
-    // },
-    // {
-    //   title: 'Help me write an essay',
-    //   label: `about silicon valley`,
-    //   action: `Help me write an essay about silicon valley`,
-    // },
-    // {
-    //   title: 'What is the weather',
-    //   label: 'in San Francisco?',
-    //   action: 'What is the weather in San Francisco?',
-    // },
+    {
+      title: '动画数据库 - 条件过滤',
+      label: '评分人数 / 动画数 / 评分 / 开始播出时间',
+      action: '制作过至少 3 部评分在 8.8 以上的动画的工作室有哪些？',
+    },
+    {
+      title: '动画数据库 - 帕累托最优',
+      label: `多目标优化 / 非支配解 / 效率前沿`,
+      action: `找出在「评分」和「评分人数」两个维度上的帕累托最优解集？`,
+    },
   ];
 
   return (

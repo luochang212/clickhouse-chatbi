@@ -16,3 +16,6 @@ docker exec -it redis-cache redis-cli -a [REDIS_PASSWORD] ping
 
 # 测试 postgres 是否运行
 docker exec -it postgres-db psql -U postgres -d nextjsdev
+
+# 测试前端功能
+export PLAYWRIGHT=True && pnpm exec playwright test

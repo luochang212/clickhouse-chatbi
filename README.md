@@ -1,10 +1,12 @@
-# clickhouse-chatbi
+# ClickHouse ChatBI
 
-一个可以访问 [ClickHouse](https://github.com/ClickHouse/ClickHouse) 的、带 WebUI 的 ChatBI。
+基于 [ClickHouse](https://github.com/ClickHouse/ClickHouse) 数据库的 [ChatBI](https://en.wikipedia.org/wiki/Business_intelligence) 单页应用。
+
+![frontend-image](./img/webui-img.png)
 
 ## 一、技术栈
 
-- **前端**: `Next.js`
+- **前端**: `Next.js` ([模版](https://vercel.com/templates/ai/nextjs-ai-chatbot))
 - **后端**: `Qwen Agent`
 - **数据库**: `ClickHouse`
 - **MCP**: `mcp-clickhouse`
@@ -17,7 +19,7 @@ docker compose 的环境变量在 `.env` 文件，按律不上传。
 具体配置参考 [.env.example](./.env.example) 文件。
 
 > [!NOTE]
-> 密码可以随意配置，但请注意一致性，比如 `POSTGRES_URL` 中的密码 需要和 `POSTGRES_PASSWORD` 保持一致。`DEEPSEEK_API_KEY` 不是必要的，仅作为备选，如不需要可注释掉此配置。`DASHSCOPE_API_KEY` 是必要的，请前往 [阿里云百炼](https://www.aliyun.com/product/bailian) 平台申请。
+> 密码可以随意配置，但请注意一致性，比如 `POSTGRES_URL` 中的密码需要和 `POSTGRES_PASSWORD` 保持一致。`DEEPSEEK_API_KEY` 不是必要的，仅作为备选，如不需要可注释掉此配置。`DASHSCOPE_API_KEY` 是必要的，请前往 [阿里云百炼](https://www.aliyun.com/product/bailian) 平台申请。
 
 ## 三、本地运行
 
@@ -43,9 +45,11 @@ cp .env.example .env
 
 **3）启动服务**
 
-> **⚠️ Windows 用户注意事项**
+> [!NOTE]
 > 
-> 请检查 `.sh` 文件是否是 CRLF 格式。如是，需转换为 LF 格式，否则可能导致 docker compose 启动失败，打开 PowerShell 执行：
+> **Windows 用户注意事项**
+> 
+> Windows 用户需检查 `.sh` 文件是否是 CRLF 格式。如是，需转换为 LF 格式，否则可能导致 docker compose 启动失败，在当前目录下打开 PowerShell 执行：
 > 
 > ```powershell
 > .\convert.ps1
@@ -79,7 +83,7 @@ docker logs nextjs-dev -f
 
 启动后，打开浏览器访问 [http://localhost:3000/](http://localhost:3000/)
 
-由于我们使用的是 `Next.js` 的开发模式 (`pnpm dev`)，第一次启动通常需要一点时间。等待编译完成后，即可访问。
+由于我们使用的是 `Next.js` 的开发模式 (`pnpm dev`)，第一次启动通常需要一点时间。等待编译完成后，即可访问。如以 guest 模式多次访问遭遇对话失败，可能是 cookie 残留导致，需清除浏览器缓存后重试。
 
 如果你像我一样，导入了动漫数据集 [top-popular-anime](https://www.kaggle.com/datasets/tanishksharma9905/top-popular-anime)，可以这样提问：
 
