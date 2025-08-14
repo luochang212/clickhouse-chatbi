@@ -43,6 +43,7 @@ AUTH_SECRET=[YOUR_AUTH_SECRET]
 AUTH_URL=http://0.0.0.0:3000
 POSTGRES_URL=postgres://postgres:[YOUR_POSTGRES_PASSWORD]@postgres:5432/nextjsdev
 REDIS_URL=redis://:[YOUR_REDIS_PASSWORD]@redis:6379
+DISABLE_SECURE_COOKIE=true
 ```
 
 本页面可能更新不及时，最新配置请参考 [.env.example](./.env.example) 文件。
@@ -108,9 +109,6 @@ docker ps
 
 # 查看 nextjs-dev 容器日志
 docker logs nextjs-dev -f
-
-# 重新构建容器
-# docker compose build --no-cache
 ```
 
 启动后，打开浏览器访问 [http://localhost:3000/](http://localhost:3000/)
@@ -144,4 +142,7 @@ docker compose down
 
 # 删除所有容器和卷
 docker compose down -v
+
+# 重新构建容器
+docker compose build --no-cache
 ```
