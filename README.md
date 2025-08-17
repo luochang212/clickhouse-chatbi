@@ -1,20 +1,29 @@
-# clickhouse-chatbi
+# CKBI
 
-基于 [ClickHouse](https://github.com/ClickHouse/ClickHouse) 数据库的 ChatBI 单页应用。
+基于 [ClickHouse](https://github.com/ClickHouse/ClickHouse) 数据库的 ChatBI 查数工具。
 
 ![frontend-image](./img/webui-img.png)
 
+你可以导入任何感兴趣的数据，以对话的方式探索数据，获得统计信息。应用内预置了一个动漫数据库，如果你是第一次使用，可以用首页预设的 Prompt 与之交互。
+
 ## 一、技术栈
 
-- **前端**: `Next.js` ([模版](https://vercel.com/templates/ai/nextjs-ai-chatbot))
+- **前端**: `Next.js`（[模版](https://vercel.com/templates/ai/nextjs-ai-chatbot)）
 - **后端**: `Qwen Agent`
 - **数据库**: `ClickHouse`
 - **MCP**: `mcp-clickhouse`
 - **部署**: `docker compose`
 
-## 二、配置文件
+## 二、特性
 
-docker compose 的环境变量在 `.env` 文件，按律不上传。 
+- **容器化部署**：docker compose 一键启停
+- **OLAP 引擎**：内置 ClickHouse，支持千万级数据的高速查询
+- **推理 Agent**：开启 ReAct 模式，Agent 具备更强的规划与工具调用能力
+- **现代化前端**：基于深受 startup 们喜爱的 Next.js 框架开发
+
+## 三、配置文件
+
+docker compose 的环境变量在 `.env` 文件，按律不上传，其格式如下：
 
 ```env
 # backend
@@ -28,8 +37,6 @@ CLICKHOUSE_MCP_BIND_HOST=0.0.0.0
 CLICKHOUSE_MCP_BIND_PORT=8760
 CLICKHOUSE_SECURE=false
 CLICKHOUSE_VERIFY=false
-DEEPSEEK_BASE_URL=https://api.deepseek.com
-DEEPSEEK_API_KEY=[YOUR_DEEPSEEK_API_KEY]
 DASHSCOPE_BASE_URL=https://dashscope.aliyuncs.com/compatible-mode/v1
 DASHSCOPE_API_KEY=[YOUR_DASHSCOPE_API_KEY]
 
@@ -38,30 +45,29 @@ POSTGRES_USER=postgres
 POSTGRES_PASSWORD=[YOUR_POSTGRES_PASSWORD]
 POSTGRES_DB=nextjsdev
 REDIS_PASSWORD=[YOUR_REDIS_PASSWORD]
-# Generate a random auth secret: https://generate-secret.vercel.app/32
 AUTH_SECRET=[YOUR_AUTH_SECRET]
-AUTH_URL=http://0.0.0.0:3000
+AUTH_URL=http://localhost:3000
 POSTGRES_URL=postgres://postgres:[YOUR_POSTGRES_PASSWORD]@postgres:5432/nextjsdev
 REDIS_URL=redis://:[YOUR_REDIS_PASSWORD]@redis:6379
 DISABLE_SECURE_COOKIE=true
 ```
 
-本页面可能更新不及时，最新配置请参考 [.env.example](./.env.example) 文件。
+上述配置有可能更新不及时，亦可参考 [.env.example](./.env.example) 文件中的配置。
 
 > [!NOTE]
-> 密码可以随意配置，但请注意一致性，比如 `POSTGRES_URL` 中的密码需要和 `POSTGRES_PASSWORD` 保持一致。`DEEPSEEK_API_KEY` 不是必要的，仅作为备选，如不需要可注释掉此配置。`DASHSCOPE_API_KEY` 是必要的，请前往 [阿里云百炼](https://www.aliyun.com/product/bailian) 平台申请。
+> 密码可以随意设置，但请注意一致性，比如 `POSTGRES_URL` 中的密码需要和 `POSTGRES_PASSWORD` 保持一致。`DEEPSEEK_API_KEY` 不是必要的，仅作为备选，如不需要可注释此配置。`DASHSCOPE_API_KEY` 是必要的，请前往 [阿里云百炼](https://www.aliyun.com/product/bailian) 平台申请。
 
-## 三、本地运行
+## 四、本地运行
 
 **1）配置 `.env` 文件**
 
-在当前路径下
+在当前路径下，按以下方法配置 `.env`：
 
 ```bash
-# 1. 复制配置格式
+# 1. 复制配置文件的格式
 cp .env.example .env
 
-# 2. 参考上一节，将环境变量填入 .env 文件
+# 2. 参考上一节，将你的环境变量填入 .env 文件
 # vim .env
 # ......
 ```
@@ -70,8 +76,8 @@ cp .env.example .env
 
 这包括：
 
-- 启动 Docker Desktop
-- 对于中国大陆地区，需要 [配置镜像源](https://luochang212.github.io/posts/chat_to_clickhouse/#1-%E9%85%8D%E7%BD%AE-docker-%E9%95%9C%E5%83%8F%E6%BA%90)
+- 下载并启动 Docker Desktop
+- 对于中国大陆，需要 [配置镜像源](https://luochang212.github.io/posts/chat_to_clickhouse/#1-%E9%85%8D%E7%BD%AE-docker-%E9%95%9C%E5%83%8F%E6%BA%90)
 
 **3）启动服务**
 
@@ -87,19 +93,19 @@ cp .env.example .env
 > 
 > 该脚本将本目录下所有 `.sh` 文件的行结束符转换为 LF 格式。
 
-然后在当前路径运行：
+在当前路径运行：
 
 ```bash
 docker compose up -d
 ```
 
-上述命令将拉起 ChatBI 服务依赖的 5 个容器：
+上述命令将一次性拉起 ChatBI 服务所依赖的 5 个容器：
 
-- `nextjs-dev`
-- `mcp-openai-service`
-- `clickhouse-dev`
-- `postgres-db`
-- `redis-cache`
+- `nextjs-dev`：前端服务
+- `mcp-openai-service`：MCP SSE 与 FastAPI 后端
+- `clickhouse-dev`：ClickHouse 数据库
+- `postgres-db`：Postgres 数据库（前端依赖）
+- `redis-cache`：Redis 服务（前端依赖）
 
 检查容器是否正常运行：
 
@@ -146,3 +152,9 @@ docker compose down -v
 # 重新构建容器
 docker compose build --no-cache
 ```
+
+## 五、changelog
+
+- [x] 开发 entrypoint 启动脚本
+- [x] 开发 docker compose 脚本
+- [x] 
