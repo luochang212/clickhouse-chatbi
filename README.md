@@ -1,10 +1,10 @@
 # CKBI
 
-基于 [ClickHouse](https://github.com/ClickHouse/ClickHouse) 数据库的 ChatBI 查数工具。
+基于 [ClickHouse](https://github.com/ClickHouse/ClickHouse) 数据库的 ChatBI 应用。
 
 ![frontend-image](./img/webui-img.png)
 
-你可以导入任何感兴趣的数据，以对话的方式探索数据，获得统计信息。应用内预置了一个动漫数据库，如果你是第一次使用，可以用首页预设的 Prompt 与之交互。
+你可以导入任何感兴趣的数据，以对话的方式探索数据。应用内预置了一个动漫数据库，如果不知道问什么，可以用预设的四个 Prompt 与之交互。
 
 ## 一、技术栈
 
@@ -133,7 +133,7 @@ docker logs nextjs-dev -f
 - 2024 年开始播出的动画中，评分最高的是？
 
 > [!NOTE]
-> 囿于 GitHub 仓库上传文件的限制，我并未上传完整的动漫数据集，而是用 [sample.sh](./backend/init/data/sample.sh) 脚本取前一千行作为样例数据，随代码上传。如果你希望访问完整的动漫数据集，需要下载 [top-popular-anime](https://www.kaggle.com/datasets/tanishksharma9905/top-popular-anime) 的 `popular_anime.csv` 文件，替代当前一千行版本的 [./backend/init/data/popular_anime.csv](./backend/init/data/popular_anime.csv) 文件。
+> 囿于 GitHub 对文件大小的限制，的动漫数据集只上传了前一千行。如果你希望探索完整数据，请下载 [top-popular-anime](https://www.kaggle.com/datasets/tanishksharma9905/top-popular-anime) 的 `popular_anime.csv` 文件，并替换 [./backend/init/data/popular_anime.csv](./backend/init/data/popular_anime.csv) 文件。
 
 **4）关闭并删除容器**
 
@@ -155,6 +155,9 @@ docker compose build --no-cache
 
 ## 五、changelog
 
-- [x] 开发 entrypoint 启动脚本
-- [x] 开发 docker compose 脚本
-- [x] 
+- [x] 开发 Qwen Agent 后端
+- [x] 开发 MCP SSE
+- [x] 开发 FastAPI
+- [x] 开发 Next.js 前端
+- [x] 开发 entrypoint 脚本
+- [x] 开发 docker compose 启动脚本
