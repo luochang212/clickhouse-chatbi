@@ -1,6 +1,6 @@
 <div style="text-align: center;">
   <picture>
-    <source srcset="./img/ckbi.png" type="image/png">
+    <source srcset="./img/ckbi1.png" type="image/png">
     <img src="https://gitee.com/luochang212/img-bak/raw/master/ckbi.png" alt="LOGO" />
   </picture>
 </div>
@@ -89,8 +89,6 @@ cp .env.example .env
 **3）启动服务**
 
 > [!NOTE]
-> 
-> **Windows 用户注意事项**
 > 
 > Windows 用户需检查 `.sh` 文件是否是 CRLF 格式。如是，需转换为 LF 格式，否则可能导致 docker compose 启动失败，在当前目录下打开 PowerShell 执行：
 > 
