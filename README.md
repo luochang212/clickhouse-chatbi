@@ -1,7 +1,7 @@
 <div style="text-align: center;">
   <picture>
     <source srcset="./img/ckbi1.png" type="image/png">
-    <img src="https://gitee.com/luochang212/img-bak/raw/master/ckbi.png" alt="LOGO" />
+    <img src="https://pityboy.oss-cn-beijing.aliyuncs.com/ckbi.png" alt="LOGO" />
   </picture>
 </div>
 
