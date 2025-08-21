@@ -1,8 +1,6 @@
 <div style="text-align: center;">
-  <picture>
-    <source srcset="./img/ckbi1.png" type="image/png">
     <img src="https://pityboy.oss-cn-beijing.aliyuncs.com/ckbi.png" alt="LOGO" />
-  </picture>
+    <!-- <img src="./img/ckbi.png" alt="LOGO" /> -->
 </div>
 
 # CKBI
