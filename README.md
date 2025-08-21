@@ -126,7 +126,7 @@ docker logs nextjs-dev -f
 >
 > 如以 guest 身份提问无回复，尝试清除浏览器 cookie 后重试。
 
-如果你也像我一样，导入了动漫数据集 [top-popular-anime](https://www.kaggle.com/datasets/tanishksharma9905/top-popular-anime)，可以这样提问：
+如果你像我一样，导入了动漫数据集 [top-popular-anime](https://www.kaggle.com/datasets/tanishksharma9905/top-popular-anime)，可以这样提问：
 
 - 所有动漫的平均评分是多少？
 - ID 为 100 的动画的出品方是？
