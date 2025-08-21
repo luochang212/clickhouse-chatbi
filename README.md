@@ -86,9 +86,9 @@ cp .env.example .env
 
 **3）启动服务**
 
-> [!NOTE]
+> [!WARNING]
 > 
-> 对于 Windows 用户，若 `.sh` 文件为 CRLF 格式，需转换成 LF 格式，否则 docker compose 无法正常启动。为了处理这种情况，我写了一个文件格式转换程序。
+> 对于 Windows 用户，若 `.sh` 文件为 CRLF 格式，需转换成 LF 格式，否则 docker compose 将无法正常启动。为处理这种情况，我写了一个文件格式转换程序。
 >
 > 在当前目录打开 PowerShell，执行转换程序：
 > 
@@ -124,7 +124,7 @@ docker logs nextjs-dev -f
 
 > [!NOTE]
 >
-> 如以 guest 身份提问无回复，尝试清除浏览器 cookie 后重试。
+> 如以 guest 身份提问，应用无回复，请尝试清除浏览器 cookie 后重试。
 
 如果你像我一样，导入了动漫数据集 [top-popular-anime](https://www.kaggle.com/datasets/tanishksharma9905/top-popular-anime)，可以这样提问：
 
@@ -141,11 +141,6 @@ docker logs nextjs-dev -f
 > 囿于 GitHub 对文件大小的限制，本仓库只上传了动漫数据库的前一千行，作为样例。如果希望探索完整的动漫数据，从 [top-popular-anime](https://www.kaggle.com/datasets/tanishksharma9905/top-popular-anime) 下载 `popular_anime.csv` 文件，然后替换掉本仓库的 [./backend/init/data/popular_anime.csv](./backend/init/data/popular_anime.csv) 文件即可。
 
 **4）关闭并删除容器**
-
-<!-- 
-> [!WARNING]
-> 执行此步骤将删除所有相关容器和卷，包括数据库中的数据。请确保已备份重要数据。
--->
 
 在当前路径下执行：
 
