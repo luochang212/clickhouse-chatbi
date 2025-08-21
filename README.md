@@ -13,7 +13,7 @@
 
 ## 一、技术栈
 
-- **前端**: `Next.js`（[模版](https://vercel.com/templates/ai/nextjs-ai-chatbot)）
+- **前端**: `Next.js`（[模板](https://vercel.com/templates/ai/nextjs-ai-chatbot)）
 - **后端**: `Qwen Agent`
 - **数据库**: `ClickHouse`
 - **MCP**: `mcp-clickhouse`
@@ -60,7 +60,7 @@ DISABLE_SECURE_COOKIE=true
 上述配置可能更新不及时，亦可参考 [.env.example](./.env.example) 中的配置。
 
 > [!NOTE]
-> 密码可随意设置，但请注意一致性，比如 `POSTGRES_URL` 中的密码需要和 `POSTGRES_PASSWORD` 保持一致。`DEEPSEEK_API_KEY` 仅作为备选，如不需要可注释此配置。`DASHSCOPE_API_KEY` 是必要的，请前往 [阿里云百炼](https://www.aliyun.com/product/bailian) 平台申请。
+> 请前往 [阿里云百炼](https://www.aliyun.com/product/bailian) 申请 `DASHSCOPE_API_KEY`。
 
 ## 四、本地运行
 
@@ -88,24 +88,24 @@ cp .env.example .env
 
 > [!NOTE]
 > 
-> Windows 用户需检查 `.sh` 文件是否是 CRLF 格式。如是，需转换为 LF 格式，否则可能导致 docker compose 启动失败，在当前目录下打开 PowerShell 执行：
+> 对于 Windows 用户，若 `.sh` 文件为 CRLF 格式，需转换成 LF 格式，否则 docker compose 无法正常启动。为了处理这种情况，我写了一个文件格式转换程序。
+>
+> 在当前目录打开 PowerShell，执行转换程序：
 > 
 > ```powershell
 > .\convert.ps1
 > ```
-> 
-> 该脚本将本目录下所有 `.sh` 文件的行结束符转换为 LF 格式。
 
-在当前路径运行：
+在当前路径下运行以下命令，启动 docker compose：
 
 ```bash
 docker compose up -d
 ```
 
-上述命令将一次性拉起 ChatBI 服务所依赖的 5 个容器：
+上述命令将一次性拉起 ChatBI 服务依赖的 5 个容器：
 
 - `nextjs-dev`：前端服务
-- `mcp-openai-service`：MCP SSE 和 FastAPI 后端
+- `mcp-openai-service`：MCP SSE 和 FastAPI 后端服务
 - `clickhouse-dev`：ClickHouse 数据库
 - `postgres-db`：Postgres 数据库（前端依赖）
 - `redis-cache`：Redis 服务（前端依赖）
@@ -120,11 +120,13 @@ docker ps
 docker logs nextjs-dev -f
 ```
 
-启动后，打开浏览器访问 [http://localhost:3000/](http://localhost:3000/)
+待前端初始化完成后，打开浏览器访问应用 [http://localhost:3000/](http://localhost:3000/)
 
-由于我们使用的是 `Next.js` 的开发模式 (`pnpm dev`)，第一次启动通常需要一点时间。等待编译完成后，即可访问。如以 guest 模式多次访问遭遇对话失败，可能是 cookie 残留导致，需清除浏览器缓存后重试。
+> [!NOTE]
+>
+> 如以 guest 身份提问无回复，尝试清除浏览器 cookie 后重试。
 
-如果你像我一样，导入了动漫数据集 [top-popular-anime](https://www.kaggle.com/datasets/tanishksharma9905/top-popular-anime)，可以这样提问：
+如果你也像我一样，导入了动漫数据集 [top-popular-anime](https://www.kaggle.com/datasets/tanishksharma9905/top-popular-anime)，可以这样提问：
 
 - 所有动漫的平均评分是多少？
 - ID 为 100 的动画的出品方是？
@@ -136,12 +138,14 @@ docker logs nextjs-dev -f
 - 2024 年开始播出的动画中，评分最高的是？
 
 > [!NOTE]
-> 囿于 GitHub 对文件大小的限制，的动漫数据集只上传了前一千行。如果你希望探索完整数据，请下载 [top-popular-anime](https://www.kaggle.com/datasets/tanishksharma9905/top-popular-anime) 的 `popular_anime.csv` 文件，并替换 [./backend/init/data/popular_anime.csv](./backend/init/data/popular_anime.csv) 文件。
+> 囿于 GitHub 对文件大小的限制，本仓库只上传了动漫数据库的前一千行，作为样例。如果希望探索完整的动漫数据，从 [top-popular-anime](https://www.kaggle.com/datasets/tanishksharma9905/top-popular-anime) 下载 `popular_anime.csv` 文件，然后替换掉本仓库的 [./backend/init/data/popular_anime.csv](./backend/init/data/popular_anime.csv) 文件即可。
 
 **4）关闭并删除容器**
 
+<!-- 
 > [!WARNING]
 > 执行此步骤将删除所有相关容器和卷，包括数据库中的数据。请确保已备份重要数据。
+-->
 
 在当前路径下执行：
 
@@ -151,6 +155,9 @@ docker compose down
 
 # 删除所有容器和卷
 docker compose down -v
+
+# 删除所有容器、卷和镜像
+docker compose down -v --rmi all
 
 # 重新构建容器
 docker compose build --no-cache
