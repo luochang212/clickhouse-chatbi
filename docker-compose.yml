@@ -6,9 +6,6 @@ services:
       dockerfile: Dockerfile
     container_name: clickhouse-dev
     user: "101:101"
-    ports:
-      - "18123:8123"
-      - "19000:9000"
     volumes:
       - clickhouse_data:/var/lib/clickhouse/
       - clickhouse_logs:/var/log/clickhouse-server/
@@ -33,9 +30,6 @@ services:
       context: ./backend
       dockerfile: Dockerfile.mcp
     container_name: mcp-openai-service
-    ports:
-      - "8001:8001"
-      - "8760:8760"
     volumes:
       - ./.env:/app/.env
       - ./backend/log:/app/log
@@ -67,8 +61,6 @@ services:
       POSTGRES_USER: ${POSTGRES_USER:-postgres}
       POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-postgres}
       POSTGRES_DB: ${POSTGRES_DB:-mydatabase}
-    ports:
-      - "15432:5432"
     volumes:
       - postgres_data:/var/lib/postgresql/data
     restart: on-failure:5
@@ -80,8 +72,6 @@ services:
     image: redis:7-alpine
     container_name: redis-cache
     command: redis-server --requirepass ${REDIS_PASSWORD:-redis}
-    ports:
-      - "16379:6379"
     volumes:
       - redis_data:/data
     restart: on-failure:5

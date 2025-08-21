@@ -38,9 +38,6 @@ RUN chmod +x /custom-entrypoint-mcp.sh
 # 创建supervisor配置文件
 COPY supervisord.conf /etc/supervisor/conf.d/supervisord.conf
 
-# 暴露端口
-EXPOSE 8001 8760
-
 # 健康检查
 # HEALTHCHECK --interval=30s --timeout=10s --start-period=5s --retries=3 \
 #     CMD curl -f http://localhost:8001/health && curl -f http://localhost:8760/health || exit 1

@@ -1,3 +1,10 @@
+<div style="text-align: center;">
+  <picture>
+    <source srcset="./img/ckbi.png" type="image/png">
+    <img src="https://gitee.com/luochang212/img-bak/raw/master/ckbi.png" alt="LOGO" />
+  </picture>
+</div>
+
 # CKBI
 
 基于 [ClickHouse](https://github.com/ClickHouse/ClickHouse) 数据库的 ChatBI 应用。
@@ -52,10 +59,10 @@ REDIS_URL=redis://:[YOUR_REDIS_PASSWORD]@redis:6379
 DISABLE_SECURE_COOKIE=true
 ```
 
-上述配置有可能更新不及时，亦可参考 [.env.example](./.env.example) 文件中的配置。
+上述配置可能更新不及时，亦可参考 [.env.example](./.env.example) 中的配置。
 
 > [!NOTE]
-> 密码可以随意设置，但请注意一致性，比如 `POSTGRES_URL` 中的密码需要和 `POSTGRES_PASSWORD` 保持一致。`DEEPSEEK_API_KEY` 不是必要的，仅作为备选，如不需要可注释此配置。`DASHSCOPE_API_KEY` 是必要的，请前往 [阿里云百炼](https://www.aliyun.com/product/bailian) 平台申请。
+> 密码可随意设置，但请注意一致性，比如 `POSTGRES_URL` 中的密码需要和 `POSTGRES_PASSWORD` 保持一致。`DEEPSEEK_API_KEY` 仅作为备选，如不需要可注释此配置。`DASHSCOPE_API_KEY` 是必要的，请前往 [阿里云百炼](https://www.aliyun.com/product/bailian) 平台申请。
 
 ## 四、本地运行
 
@@ -102,7 +109,7 @@ docker compose up -d
 上述命令将一次性拉起 ChatBI 服务所依赖的 5 个容器：
 
 - `nextjs-dev`：前端服务
-- `mcp-openai-service`：MCP SSE 与 FastAPI 后端
+- `mcp-openai-service`：MCP SSE 和 FastAPI 后端
 - `clickhouse-dev`：ClickHouse 数据库
 - `postgres-db`：Postgres 数据库（前端依赖）
 - `redis-cache`：Redis 服务（前端依赖）

@@ -31,3 +31,5 @@ backend/log/
 # Archives
 backend/archived/
 frontend/archived/
+
+nginx
