@@ -66,7 +66,7 @@ DISABLE_SECURE_COOKIE=true
 
 **1）配置 `.env` 文件**
 
-在当前路径下，按以下方法配置 `.env`：
+在当前路径下，创建并配置 `.env`：
 
 ```bash
 # 1. 复制配置文件的格式
@@ -82,7 +82,13 @@ cp .env.example .env
 这包括：
 
 - 下载并启动 Docker Desktop
-- 对于中国大陆，需要 [配置镜像源](https://luochang212.github.io/posts/chat_to_clickhouse/#1-%E9%85%8D%E7%BD%AE-docker-%E9%95%9C%E5%83%8F%E6%BA%90)
+- 对于中国大陆用户，需要 [配置镜像源](https://luochang212.github.io/posts/chat_to_clickhouse/#1-%E9%85%8D%E7%BD%AE-docker-%E9%95%9C%E5%83%8F%E6%BA%90)
+
+在 terminal 运行以下命令，确认 docker 的客户端和服务端均成功启动：
+
+```bash
+docker info
+```
 
 **3）启动服务**
 
