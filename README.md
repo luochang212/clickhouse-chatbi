@@ -88,9 +88,7 @@ cp .env.example .env
 
 > [!WARNING]
 > 
-> 对于 Windows 用户，若 `.sh` 文件为 CRLF 格式，需转换成 LF 格式，否则 docker compose 将无法正常启动。
->
-> 为处理这种情况，请在当前目录打开 PowerShell，执行转换程序：
+> 对于 Windows 用户，若 `.sh` 文件为 CRLF 格式，需转换成 LF 格式，否则 docker compose 将无法正常启动。为处理这种情况，请在当前目录打开 PowerShell，执行转换程序：
 > 
 > ```powershell
 > .\convert.ps1
