@@ -16,7 +16,7 @@ import { isTestEnvironment } from '../constants';
 const bailian = createOpenAICompatible({
   name: 'bailian',
   apiKey: process.env.DASHSCOPE_API_KEY,
-  baseURL: 'https://dashscope.aliyuncs.com/compatible-mode/v1',
+  baseURL: 'https://dashscope.aliyuncs.com/compatible-mode/v1',  // process.env.DASHSCOPE_BASE_URL
   headers: {
     'X-DashScope-Compat-Mode': 'enabled'
   },
@@ -26,7 +26,7 @@ const bailian = createOpenAICompatible({
 const clickhouseAgent = createOpenAICompatible({
   name: 'clickhouse-agent',
   apiKey: 'dummy-key',
-  baseURL: 'http://mcp-service:8001/v1',  // 使用 Docker 内部网络服务名  host.docker.internal
+  baseURL: 'http://mcp-service:8001/v1',
 });
 
 export const myProvider = isTestEnvironment
@@ -40,7 +40,7 @@ export const myProvider = isTestEnvironment
     })
   : customProvider({
       languageModels: {
-        'chat-model': clickhouseAgent('clickhouse-agent'),  // 使用本地 ClickHouse Agent API
+        'chat-model': clickhouseAgent('clickhouse-agent'),
         'chat-model-reasoning': wrapLanguageModel({
           model: clickhouseAgent('clickhouse-agent'),
           middleware: extractReasoningMiddleware({ tagName: 'think' }),

@@ -60,14 +60,15 @@ function PureSuggestedActions({
           <Button
             variant="ghost"
             // onClick={async () => {
+            //   window.history.replaceState({}, '', `/chat/${chatId}`);
+
+            //   sendMessage({
+            //     role: 'user',
+            //     parts: [{ type: 'text', text: suggestedAction.action }],
+            //   });
+            // }}
             onClick={(event) => {
               event.preventDefault();
-              // window.history.replaceState({}, '', `/chat/${chatId}`);
-
-              // sendMessage({
-              //   role: 'user',
-              //   parts: [{ type: 'text', text: suggestedAction.action }],
-              // });
               setInput(suggestedAction.action);
             }}
             className="text-left border rounded-xl px-4 py-3.5 text-sm flex-1 gap-1 sm:flex-col w-full h-auto justify-start items-start"

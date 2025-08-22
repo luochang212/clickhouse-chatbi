@@ -77,9 +77,8 @@ const PurePreviewMessage = ({
           )}
 
           <div
-            className={cn('flex flex-col gap-4 w-full', {
-              'min-h-96': message.role === 'assistant' && requiresScrollPadding,
-            })}
+            className="flex flex-col gap-4 w-full"
+            style={{ maxHeight: 'none', height: 'auto' }}
           >
             {attachmentsFromMessage.length > 0 && (
               <div
@@ -116,7 +115,7 @@ const PurePreviewMessage = ({
               if (type === 'text') {
                 if (mode === 'view') {
                   return (
-                    <div key={key} className="flex flex-row gap-2 items-start">
+                    <div key={key} className="flex flex-row gap-2 items-start min-w-0">
                       {message.role === 'user' && !isReadonly && (
                         <Tooltip>
                           <TooltipTrigger asChild>
@@ -137,10 +136,11 @@ const PurePreviewMessage = ({
 
                       <div
                         data-testid="message-content"
-                        className={cn('flex flex-col gap-4', {
+                        className={cn('flex flex-col gap-4 break-words min-w-0', {
                           'bg-primary text-primary-foreground px-3 py-2 rounded-xl':
                             message.role === 'user',
                         })}
+                        style={{ maxHeight: 'none', height: 'auto' }}
                       >
                         <Markdown>{sanitizeText(part.text)}</Markdown>
                       </div>

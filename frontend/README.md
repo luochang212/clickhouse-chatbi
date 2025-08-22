@@ -36,12 +36,7 @@
 
 ## Model Providers
 
-This template ships with [xAI](https://x.ai) `grok-2-1212` as the default chat model. However, with the [AI SDK](https://sdk.vercel.ai/docs), you can switch LLM providers to [OpenAI](https://openai.com), [Anthropic](https://anthropic.com), [Cohere](https://cohere.com/), [Alibaba Cloud Bailian](https://help.aliyun.com/zh/bailian), and [many more](https://sdk.vercel.ai/providers/ai-sdk-providers) with just a few lines of code.
-
-To use Alibaba Cloud Bailian, you need to:
-1. Set `DASHSCOPE_API_KEY` in your environment variables.
-2. Update `lib/ai/providers.ts` to use the Bailian provider.
-3. Choose the appropriate model (e.g., `qwen-plus`, `qwen-max`, `qwen-turbo`, `qwen-vl-plus`).
+This template ships with [xAI](https://x.ai) `grok-2-1212` as the default chat model. However, with the [AI SDK](https://sdk.vercel.ai/docs), you can switch LLM providers to [OpenAI](https://openai.com), [Anthropic](https://anthropic.com), [Cohere](https://cohere.com/), and [many more](https://sdk.vercel.ai/providers/ai-sdk-providers) with just a few lines of code.
 
 ## Deploy Your Own
 

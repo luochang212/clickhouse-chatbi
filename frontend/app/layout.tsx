@@ -8,13 +8,25 @@ import { SessionProvider } from 'next-auth/react';
 
 export const metadata: Metadata = {
   metadataBase: new URL('https://chat.vercel.ai'),
-  title: 'ClickHouse Agent',
-  description: 'Next.js chatbot template using the AI SDK.',
+  title: 'ClickHouse ChatBI',
+  description: 'A ChatBI tool powered by ClickHouse.',
 };
 
 export const viewport = {
   maximumScale: 1, // Disable auto-zoom on mobile Safari
 };
+
+// const geist = Geist({
+//   subsets: ['latin'],
+//   display: 'swap',
+//   variable: '--font-geist',
+// });
+
+// const geistMono = Geist_Mono({
+//   subsets: ['latin'],
+//   display: 'swap',
+//   variable: '--font-geist-mono',
+// });
 
 // Fallback to system fonts when Google Fonts are not available
 const geist = {

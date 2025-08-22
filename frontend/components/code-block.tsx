@@ -16,12 +16,15 @@ export function CodeBlock({
 }: CodeBlockProps) {
   if (!inline) {
     return (
-      <code
-        {...props}
-        className={`block text-sm w-full overflow-x-auto dark:bg-zinc-900 p-4 border border-zinc-200 dark:border-zinc-700 rounded-xl dark:text-zinc-50 text-zinc-900 whitespace-pre-wrap break-words`}
-      >
-        {children}
-      </code>
+      <span className="block w-full max-w-full overflow-x-auto border border-zinc-200 dark:border-zinc-700 rounded-xl bg-zinc-50 dark:bg-zinc-900">
+        <code
+          {...props}
+          className={`block text-sm p-4 dark:text-zinc-50 text-zinc-900 whitespace-pre bg-transparent font-mono`}
+          style={{ maxWidth: '100%', maxHeight: 'none', height: 'auto', minWidth: 0, margin: 0, display: 'block' }}
+        >
+          {children}
+        </code>
+      </span>
     );
   } else {
     return (

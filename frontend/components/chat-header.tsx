@@ -71,7 +71,6 @@ function PureChatHeader({
         />
       )}
 
-
     </header>
   );
 }
