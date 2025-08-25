@@ -6,11 +6,11 @@
 # CKBI
 
 [![License](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)
+[![Docker Compose](https://img.shields.io/badge/deployment-Docker%20Compose-2496ED.svg?logo=docker)](docker-compose.yml)
 [![Next.js](https://img.shields.io/badge/frontend-Next.js-black.svg)](https://nextjs.org/)
 [![AI Agent](https://img.shields.io/badge/AI-Qwen%20Agent-purple.svg)](https://github.com/QwenLM/Qwen-Agent)
 [![MCP](https://img.shields.io/badge/protocol-MCP-red.svg)](https://modelcontextprotocol.io/)
 [![ClickHouse](https://img.shields.io/badge/database-ClickHouse-orange.svg)](https://clickhouse.com/)
-[![Docker Compose](https://img.shields.io/badge/deployment-Docker%20Compose-2496ED.svg?logo=docker)](docker-compose.yml)
 
 基于 [ClickHouse](https://github.com/ClickHouse/ClickHouse) 数据库的 ChatBI 应用。
 
