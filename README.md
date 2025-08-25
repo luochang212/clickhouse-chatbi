@@ -33,12 +33,12 @@ docker compose 的环境变量在 `.env` 文件，按律不上传，其格式如
 ```env
 # backend
 CLICKHOUSE_HOST=clickhouse
-CLICKHOUSE_PORT=18123
+CLICKHOUSE_PORT=8123
 CLICKHOUSE_USER=admin
 CLICKHOUSE_PASSWORD=[YOUR_CLICKHOUSE_PASSWORD]
 CLICKHOUSE_DATABASE=entertainment
 CLICKHOUSE_MCP_SERVER_TRANSPORT=sse
-CLICKHOUSE_MCP_BIND_HOST=0.0.0.0
+CLICKHOUSE_MCP_BIND_HOST=localhost
 CLICKHOUSE_MCP_BIND_PORT=8760
 CLICKHOUSE_SECURE=false
 CLICKHOUSE_VERIFY=false
@@ -155,8 +155,8 @@ docker compose down
 # 删除所有容器和卷
 docker compose down -v
 
-# 删除所有容器、卷和镜像
-docker compose down -v --rmi all
+# 删除所有容器、卷和本地构建的镜像
+docker compose down -v --rmi local
 
 # 重新构建容器
 docker compose build --no-cache
